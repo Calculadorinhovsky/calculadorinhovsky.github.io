@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculadora</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<style type="text/css">
+		button{
+    width: 10%;
+    height: 3%;
+    text-align: center;
+    font-family: monospace;
+    min-width: 50px; 
+		}
+
+	</style>
+</head>
+<body style="text-align: center;">
+	<br>
+	<h1 style="color:red; ;">Calculadora</h1>
+	<br>
+	<div class="container">
+<input type="text" class="form-control" name="num1" id="num1" placeholder="n&uacute;mero 1">
+<br><input type="text" class="form-control" name="num2" id="num2" placeholder="n&uacute;mero 2">
+<br><h1></h1>
+<button class="btn btn-outline-success" onclick="suma()">+</button>
+<button class="btn btn-outline-success" onclick="resta()">-</button>
+<button class="btn btn-outline-success" onclick="multilicacion()">*</button>
+<button class="btn btn-outline-success" onclick="division()">/</button>
+<button class="btn btn-outline-success" onclick="raizcuadrada()">&#8730;</button>
+<button class="btn btn-outline-success" onclick="residuo()">%</button>
+<button class="btn btn-outline-success" onclick="factorial (document.getElementById('num1').value)">!
+</button>
+<button class="btn btn-outline-success" onclick="mcm(document.getElementById('num1').value, document.getElementById('num2').value)">MCM</button>
+<br>
+
+
+<div class="container"  id="resultado"></div>
+<script>
+	function suma() {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+            document.getElementById('resultado').innerHTML = 'La suma es: ' + (num1 + num2);
+        }
+   
+    	function resta() {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+            document.getElementById('resultado').innerHTML = 'La resta es: ' + (num1 - num2);
+        }
+
+    	function multilicacion() {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+            document.getElementById('resultado').innerHTML = 'La multiplicación es: ' + (num1 * num2);
+        }
+  
+    	function division() {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+            document.getElementById('resultado').innerHTML = 'El cociente es: ' + (num1 / num2);
+        }
+
+        function residuo() {
+        	var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+            document.getElementById('resultado').innerHTML = 'El residuo es: ' + (num1 % num2);
+        }
+
+        function raizcuadrada() {
+        	var num1 = parseFloat(document.getElementById('num1').value);
+            document.getElementById('resultado').innerHTML = 'La raiz cuadrada del número 1 es: '  + Math.sqrt(num1);
+        }
+ 
+	function factorial(natural) {
+		var n = parseInt(natural);
+		var fact = n;
+		while (n>1){
+          fact = fact *(n-1);
+          n = n-1;
+		}
+		document.getElementById('resultado').innerHTML = fact;
+	}
+
+ 	function mcm(n1,n2) {
+ 		var dv=2;
+ 		var divisores= new Array();
+ 		while(n1>1 || n2>1){
+ 			if (n1 % dv ===0 || n2 % dv ===0) {
+ 				divisores.push(dv);
+           		if (n1 % dv ===0){
+            		n1=n1/dv;
+           		}
+           		if (n2 % dv === 0) {
+           			n2=n2/dv;
+           		}
+           	} else {
+           		dv=dv+1;
+           }
+ 		} 
+ 		document.getElementById('resultado').innerHTML = productoArray(divisores);	
+ 	}
+ 	function productoArray(array){
+ 		console.log('Valores en array: [' + array + ']')
+ 		var producto = 1; 
+ 		var contador = 0;
+ 		console.log('Contador=' + contador + '\tarray.lenght=' + array.length);
+ 		while(contador< array.length){
+ 			producto = producto * array[contador];
+ 			contador ++;
+ 			console.log('Valor actual del producto: [' + producto + ']');
+ 		}
+ 		return producto;
+ 	
+ }
+
+</script>
+
+</body>
+</html>
